@@ -25,8 +25,14 @@ package org.example.part1_class_types.class_interface;
                 -- Interfetele vor decupla contractul comportamentul al metodelor functionala pe mai multe interfete specifice
  */
 
+import org.example.part1_class_types.class_abstract.Dog;
+
 public interface InterfaceAnimal {
 
     void doSound();
+    void doSomething();
+    int calculateNumber();
+    String generateText();
+    Dog getDog();
 
 }

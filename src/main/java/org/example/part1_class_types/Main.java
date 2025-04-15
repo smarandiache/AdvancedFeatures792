@@ -3,8 +3,15 @@ package org.example.part1_class_types;
 import org.example.part1_class_types.class_abstract.AbstractAnimal;
 import org.example.part1_class_types.class_abstract.Bird;
 import org.example.part1_class_types.class_abstract.Dog;
+import org.example.part1_class_types.class_enum.AccessRole;
+import org.example.part1_class_types.class_enum.Day;
+import org.example.part1_class_types.class_final.BankAccount;
+import org.example.part1_class_types.class_final.MathUtils;
+import org.example.part1_class_types.class_interface.Crocodile;
 import org.example.part1_class_types.class_interface.InterfaceAnimal;
+import org.example.part1_class_types.class_interface.Parrot;
 import org.example.part1_class_types.class_object_concrete.ConcreteAnimal;
+import org.example.part1_class_types.multiple_inheritance.ElectricCar;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,32 +38,49 @@ public class Main {
         System.out.println();
 
         /* Interface */
+        System.out.println("Afisari din interfata si clasa de implementare: ");
+        InterfaceAnimal animalObject1 = new Crocodile();
+        // e relevant in cazul in care avem o relatie unica de implementare
+        // o interfata e implementata de o clasa de implementare
+        // clasa de implementare implementeaza O SINGURA interfata unica
+        Crocodile crocodileObject = new Crocodile();
+        animalObject1.doSound();
+        crocodileObject.doSound();
 
-        /** Clase Anonime **/
-            // Putem instantia obiecta de tipul unei clase abstracte?
-                // Nu, e nevoie de o clasa copil care sa mosteneasca/extinda clasa abstracta
-                // care se va comporta ca o clasa parinte.
-                // -----------------------------------------------
-                // Da. Putem prin definirea si instantierea unui obiect folosind clasele anonime, astfel incat
-                // a oferim un corp de implementare in interiorul clasei de apel. Totusi, daca scopul nostru
-                // este doar instantierea obiectului, atunci nu este posibil, e nevoie de o clasa abstracta si o
-                // clasa copil (subclasa).
-            /* Clasa abstracta */
-        AbstractAnimal abstractAnimalObject = new AbstractAnimal() {
-            @Override
-            public void makeSound() {
+        InterfaceAnimal animalObject2 = new Parrot();
+        Parrot parrotObject = new Parrot();
+        animalObject2.doSound();
+        parrotObject.doSound();
 
-            }
-        }; // 'AbstractAnimal' is abstract; cannot be instantiated
+        /* Multiple Inheritance */
+        ElectricCar electricCar = new ElectricCar("Opel", "Astra", 2020, 93, 500);
+        electricCar.displayStatus();
+        electricCar.chargeBattery();
+        electricCar.navigateTo("Suceava");
 
-            /* Interfata */
-        // Putem instantia obiecta de tipul unei interfete?
-            // Da, putem insa, suntem nevoiti sa cream implementarea in interiorul clasei de apel prin definirea
-            // unei clase anonime de moment folosind o expresie lambda neparametrizata.
-            // Insa, dpdv sintactic nu putem instantia obiecte de tipul unei interfete ptc intr-o interfata nu putem
-            // crea constructori.
-        InterfaceAnimal interfaceAnimalObject = () -> {
+        /* Final Class */
+        MathUtils mathUtils = new MathUtils();
+        System.out.println(mathUtils.CONSTANT_TEXT);
+//        mathUtils.constantText = "Alune"; -> cannot assign a value to final variable 'CONSTANT_VALUE'
+//        MathUtils.MAX_VALUE = 98; -> cannot assign a value to final variable 'MAX_VALUE'
 
-        };
+        BankAccount bankAccount = new BankAccount("123124");
+        bankAccount.display();
+        System.out.println();
+
+        /* Enum Class */
+        Day dayOne = Day.LUNI;
+        Day dayThree = Day.MIERCURI;
+        Day daySix = Day.SAMBATA;
+        System.out.println(dayOne);
+        System.out.println(dayOne + " " + dayOne.ordinal());
+        System.out.println(dayThree + " " + dayThree.ordinal());
+        System.out.println(daySix + " " + daySix.ordinal());
+
+        AccessRole newRole = AccessRole.ADMIN;
+        System.out.println(newRole.getPriority() + " " + newRole.getAccessLevel());
+
+//        AccessRole otherTole = new AccessRole("Wow", 0); // -> utilizati final class, altfel pre compile error
+//        AccessRole otherTole = AccessRole("Wow", 0); // -> utilizati final class, altfel pre compile error
     }
 }
