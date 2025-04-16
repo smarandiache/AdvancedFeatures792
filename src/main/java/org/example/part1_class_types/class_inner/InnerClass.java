@@ -28,7 +28,9 @@ public class InnerClass {
     * scopul este de a izola o logica interna utilizarea exclusiv in clasa de definitie
     *
     * Diferenta principala intre cele 2 este modul de apelare.
-    *   - Static Nested class se va apela la nivel de clasa -> InnerClass.SaticNested
+     *   - Static Nested class se va apela la nivel de clasa -> InnerClass.StaticNestedClassExample ...
+     *   - Non-Static Nested class se va apela clasa la nivel de instanta de obiect a clasei de apelare
+     *       -> InnerClass obj = new InnerClass(), obj.NonStaticNestedClassExample ...
     * */
 
     public static void main(String[] args) {
